@@ -14,7 +14,7 @@
     char * exp;
 }
 %token <exp> NUM IDEN
-%type <exp> EXP a
+%type <exp> EXP
 %left '+' '-'
 %left '/' '*'
 %nonassoc '='
@@ -22,7 +22,6 @@
 STMTS: STMTS STMT
 |STMT
 ;
-a:IDEN'='EXP   {$$ = addtotable($1,$3,'=');}
 STMT:EXP '\n'
 ;
 EXP:IDEN         {$$ = $1;}
@@ -32,7 +31,7 @@ EXP:IDEN         {$$ = $1;}
 |EXP'-'EXP    {$$ = addtotable($1,$3,'-');}
 |EXP'*'EXP    {$$ = addtotable($1,$3,'*');}
 |EXP'/'EXP    {$$ = addtotable($1,$3,'/');}
-|a
+|IDEN'='EXP   {$$ = addtotable($1,$3,'=');}
 ;
 %%
 int yyerror() {printf("\nError!"); exit(0); }
