@@ -47,22 +47,24 @@ int main(){
 }
 
 string addtotable(string op1, string op2, char op){
-    idx++;
     if(op=='='){
-        code[idx].res = op1;
-        code[idx].op2 = op1;
-        code[idx].op = op;
-        return op1;
-    }
-    else{
-        string res = malloc(3);
-        sprintf(res,"@%c",idx+'A');
-        code[idx].op1 = op1;
-        code[idx].op2 = op2;
-        code[idx].op = op;
-        code[idx].res = res;
-        return res;
-    }
+idx++;
+code[idx].res = op1;
+code[idx].op1 = op2;
+code[idx].op = op;
+code[idx].op2 = " ";
+return op1;
+}
+else{
+idx++;
+string res = malloc(3);
+sprintf(res,"@%c",idx+'A');
+code[idx].res = res;
+code[idx].op1 = op1;
+code[idx].op2 = op2;
+code[idx].op = op;
+return res;
+}
 }
 
 void threeaddr(){
