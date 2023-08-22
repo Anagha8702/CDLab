@@ -9,6 +9,7 @@
 S:FUN {printf("\nAccepted!"); exit(0);}
 ;
 FUN: TYPE IDEN '('PARAMS')' '{'BODY'}'
+|TYPE IDEN '('')' '{'BODY'}'
 ;
 PARAMS:PARAMS ',' PARAM
 |PARAM
