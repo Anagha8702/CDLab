@@ -15,7 +15,7 @@
     char * exp;
 }
 %token <exp> IDEN NUM 
-%type <exp> EXP
+%type <exp> EXP REXP
 %left '+' '-'
 %left '*' '/'
 %right '='
