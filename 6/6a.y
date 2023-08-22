@@ -18,12 +18,15 @@
 %type <exp> EXP
 %left '+' '-'
 %left '*' '/'
-%nonassoc '='
+%right '='
 %%
-STMTS: STMTS STMT
+STMTS: STMT STMTS
 |STMT
 ;
-STMT:EXP '\n'
+STMT: REXP '\n'
+;
+REXP: IDEN'='EXP {$$ = addtotable($1,$3,'=');}
+|EXP
 ;
 EXP:IDEN         {$$ = $1;}
 |NUM          {$$ = $1;}
@@ -31,8 +34,7 @@ EXP:IDEN         {$$ = $1;}
 |EXP'+'EXP {$$ = addtotable($1,$3,'+');}
 |EXP'-'EXP    {$$ = addtotable($1,$3,'-');}
 |EXP'*'EXP    {$$ = addtotable($1,$3,'*');}
-|EXP'/'EXP    {$$ = addtotable($1,$3,'/');}
-|IDEN'='EXP   {$$ = addtotable($1,$3,'=');}
+|EXP'/'EXP    {$$ = addtotable($1,$3,'/');}  
 ;
 %%
 int yyerror() {printf("\nError in syntax!"); exit(0); }
