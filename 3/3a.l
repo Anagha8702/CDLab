@@ -16,6 +16,7 @@ int main(){
     yyin = fopen("a.txt","r");
     yyout = fopen("acopy.txt","w");
     yylex();
+    printf("\nsingle = %d, multi = %d, mlines = %d\n",single,multi,mlines);
     return 0;
 }
 int yywrap() { return 1; }
